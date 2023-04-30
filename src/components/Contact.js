@@ -1,20 +1,16 @@
 import React from "react";
 import "../styles/Contact.css";
-import avatar from "../data/dataAvatar.js";
+import PropTypes from "prop-types";
 
-const Contact = () => {
+const Contact = ({ name, avatar, isOnline }) => {
   return (
     <div className="Contact">
-      <img src={avatar.image} alt="avatar" className="avatar" />
+      <img className="avatar" src={avatar} alt={name} />
       <div>
-        <p className="name">{avatar.name}</p>
+        <p className="name">{name}</p>
         <div className="status">
-          <div
-            className={avatar.isOnline ? "status-online" : "status-offline"}
-          ></div>
-          <p className="status-text">
-            {avatar.isOnline ? "Online" : "Offline"}
-          </p>
+          <div className={isOnline ? "status-online" : "status-offline"}></div>
+          <p className="status-text">{isOnline ? "Online" : "Offline"}</p>
         </div>
       </div>
     </div>
@@ -22,3 +18,9 @@ const Contact = () => {
 };
 
 export default Contact;
+
+Contact.propTypes = {
+  name: PropTypes.string.isRequired,
+  avatar: PropTypes.string.isRequired,
+  isOnline: PropTypes.bool.isRequired,
+};
